@@ -14,3 +14,9 @@ li {
   border: whitesmoke 3px solid;
   border-radius: 8px;
 }
+
+.message {
+  color: red;
+  font-weight: bold;
+  font-size: 2em;
+}

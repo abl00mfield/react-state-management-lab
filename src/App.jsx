@@ -6,6 +6,7 @@ let totalStrength;
 let totalAgility;
 
 const App = () => {
+  const [message, setMessage] = useState("");
   const [team, setTeam] = useState([]);
   const [money, setMoney] = useState(100);
   const [zombieFighters, setZombieFighters] = useState([
@@ -92,6 +93,7 @@ const App = () => {
   ]);
 
   const handleRemoveFighter = (fighter) => {
+    setMessage("");
     //remove fighter from team
     const updatedTeam = team.filter((member) => member.id !== fighter.id);
     //add price back in
@@ -116,7 +118,9 @@ const App = () => {
     //first, check to see if you can afford the new fighter
     if (fighter.price > money) {
       console.log("Not Enough Money");
+      setMessage("Not enough money");
     } else {
+      setMessage("");
       //subtract the cost of the fighter from current money
       const funds = money - fighter.price;
       //set the sate of the money
@@ -146,6 +150,7 @@ const App = () => {
     <>
       <h1>Zombie Fighters</h1>
       <h2>Money: {money}</h2>
+      {message && <p className="message">{message}</p>}
       {team.length === 0 ? (
         <p>Pick Some Team Members</p>
       ) : (
