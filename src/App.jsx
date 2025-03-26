@@ -93,6 +93,7 @@ const App = () => {
   ]);
 
   const handleRemoveFighter = (fighter) => {
+    //reset error message
     setMessage("");
     //remove fighter from team
     const updatedTeam = team.filter((member) => member.id !== fighter.id);
@@ -120,6 +121,7 @@ const App = () => {
       console.log("Not Enough Money");
       setMessage("Not enough money");
     } else {
+      //remove error message
       setMessage("");
       //subtract the cost of the fighter from current money
       const funds = money - fighter.price;
@@ -135,6 +137,8 @@ const App = () => {
       );
       //update zombie fighters
       setZombieFighters(newZombieFighters);
+
+      //update strength and agility values
       totalStrength = newTeamFighters.reduce(
         (acc, member) => acc + member.strength,
         0
