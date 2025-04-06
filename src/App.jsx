@@ -2,9 +2,6 @@
 import { useState } from "react";
 import "./App.css";
 
-let totalStrength;
-let totalAgility;
-
 const App = () => {
   const [message, setMessage] = useState("");
   const [team, setTeam] = useState([]);
@@ -99,13 +96,7 @@ const App = () => {
     const updatedTeam = team.filter((member) => member.id !== fighter.id);
     //add price back in
     const funds = money + fighter.price;
-    //update total strength
-    totalStrength = updatedTeam.reduce(
-      (acc, member) => acc + member.strength,
-      0
-    );
-    //update total Agility
-    totalAgility = updatedTeam.reduce((acc, member) => acc + member.agility, 0);
+
     //add fighter back to Zombie Fighters
     const updatedZombieFighters = [...zombieFighters, fighter];
 
@@ -137,18 +128,13 @@ const App = () => {
       );
       //update zombie fighters
       setZombieFighters(newZombieFighters);
-
-      //update strength and agility values
-      totalStrength = newTeamFighters.reduce(
-        (acc, member) => acc + member.strength,
-        0
-      );
-      totalAgility = newTeamFighters.reduce(
-        (acc, member) => acc + member.agility,
-        0
-      );
     }
   };
+
+  //calculate totalStrength
+  const totalStrength = team.reduce((acc, member) => acc + member.strength, 0);
+  //calcuate total Agility
+  const totalAgility = team.reduce((acc, member) => acc + member.agility, 0);
 
   return (
     <>
